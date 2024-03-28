@@ -1,4 +1,4 @@
-# wallet_service
+# wallet_service: Python 3.10
 
 Before run this project please configure Database in .env file
 
