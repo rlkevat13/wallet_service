@@ -1,6 +1,4 @@
-from django.shortcuts import render
-from drf_spectacular.types import OpenApiTypes
-from drf_spectacular.utils import extend_schema, OpenApiParameter
+from drf_spectacular.utils import extend_schema
 from rest_framework import status
 from rest_framework.authtoken.models import Token
 from rest_framework.permissions import IsAuthenticated
@@ -12,7 +10,6 @@ from api.v1.v1_users.serializers import RegisterSerializer, LoginSerializer, Use
 from utils.custom_serializer_fields import validate_serializers_message
 
 
-# Create your views here.
 class RegisterView(APIView):
     @extend_schema(
         request=RegisterSerializer,
