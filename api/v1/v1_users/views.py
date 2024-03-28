@@ -7,6 +7,7 @@ from rest_framework.views import APIView
 
 from api.v1.v1_users.models import SystemUser
 from api.v1.v1_users.serializers import RegisterSerializer, LoginSerializer, UserDetailsSerializer
+from api.v1.v1_wallet_service.models import Wallet
 from utils.custom_serializer_fields import validate_serializers_message
 
 
@@ -22,9 +23,9 @@ class RegisterView(APIView):
             if not serializer.is_valid():
                 return Response({'message': validate_serializers_message(serializer.errors)},
                                 status=status.HTTP_400_BAD_REQUEST)
-            serializer.save()
-            return Response(
-                {'message': 'User registered successfully.'}, status=status.HTTP_200_OK)
+            user_obj = serializer.save()
+            Wallet.objects.create(user=user_obj, balance=0.0)
+            return Response({'message': 'User registered successfully.'}, status=status.HTTP_200_OK)
         except Exception as ex:
             return Response({'message': ex.args}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
