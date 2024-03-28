@@ -1,5 +1,5 @@
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import get_object_or_404
 from drf_spectacular.utils import extend_schema
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
@@ -13,7 +13,6 @@ from api.v1.v1_wallet_service.serializers import WalletSerializer, TransactionSe
 from utils.custom_serializer_fields import validate_serializers_message
 
 
-# Create your views here.
 class GetWalletBalanceView(APIView):
     permission_classes = [IsAuthenticated]
 
